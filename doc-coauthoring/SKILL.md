@@ -25,6 +25,20 @@ Explain that this approach helps ensure the doc works well when others read it (
 
 If user declines, work freeform. If user accepts, proceed to Stage 1.
 
+## Style & Tone Guidelines
+
+**CRITICAL STEP:** Before assisting the user, you must understand the desired "Viral Narrative" style.
+1.  **Read the References**: detailed in the `references/` directory relative to this skill.
+2.  **Analyze the Style**: Notice the following patterns in the reference articles:
+    -   **Narrative Hooks**: Start with a concrete story or reaction ("I was stunned", "A friend told me...").
+    -   **Short, Punchy Sentences**: Mimic a conversational flow. Avoid walls of text.
+    -   **Numbered Sections**: Use clear `## 01`, `## 02` headers or bold numbers for readability.
+    -   **Direct Address**: Talk *to* the reader ("You might ask...", "Let me explain...").
+    -   **Actionable Insights**: Always bridge theory to practice ("Here's what I did...", "Here's how you can use this...").
+    -   **Emotional Connection**: express personal reactions (curiosity, shock, realization).
+
+**Apply this style throughout Stage 2 (Refinement) and when drafting any content.**
+
 ## Stage 1: Context Gathering
 
 **Goal:** Close the gap between what the user knows and what Claude knows, enabling smart guidance later.
