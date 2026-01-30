@@ -97,47 +97,58 @@ Consult [style-guide.md](references/style-guide.md) for detailed guidelines. See
 
 **Structure:**
 ```
-[Hook: Who said what / What happened]
+# MMDD：[嘉宾名] X [栏目名]：[一句话核心观点]
 
-[1-2 profound core insights - must be non-consensus or counterintuitive]
+今天看到 [嘉宾名] 去了 [栏目名] 的播客。
 
-[Transition phrase like "总结一下做个笔记👇"]
+[嘉宾名] [2-3句话介绍嘉宾背景和核心成就，用具体数据]。
 
-1. **关键词/小标题**：一句话洞察，简洁有力
-2. **关键词/小标题**：一句话洞察，简洁有力
-3. **关键词/小标题**：一句话洞察，简洁有力
+这期播客总共录了 [时长]，[嘉宾名] 谈到了 [N] 个有趣的观点：
+
+1、[观点标题/关键词]。[完整的逻辑阐述，包含推理过程，2-4句话]
+
+2、[观点标题/关键词]。[完整的逻辑阐述，包含推理过程，2-4句话]
+
+3、[观点标题/关键词]。[完整的逻辑阐述，包含推理过程，2-4句话]
+
 ...
-[Continue with 8-12 total points]
+[Continue with 10-15 total points]
 
 ---
 ```
 
+**标题格式 (重要):**
+- 格式：`# MMDD：嘉宾名 X 栏目名：一句话观点`
+- 示例：`# 0130：Peter Steinberger X The Pragmatic Engineer：一天600次提交，代码比以前更好`
+- 一句话观点要抓住最反直觉或最有冲击力的点
+
+**开头格式 (重要):**
+- 第一句：简单说看了什么 `今天看到 [嘉宾] 去了 [栏目] 的播客。`
+- 第二段：2-3句介绍嘉宾背景，必须有具体数据（数字、公司名、产品名）
+- 第三句：过渡句 `这期播客总共录了 [时长]，[嘉宾] 谈到了 [N] 个有趣的观点：`
+- 如果不知道时长，可以写"将近两小时"或省略时长
+
 **List Format Rules (重要):**
-- **使用数字+点号格式** (`1.` `2.` `3.`...)，不要用emoji数字（1️⃣2️⃣...）
-  - 原因：emoji数字超过10后不美观，且占用更多字符
-- **每条以加粗关键词开头**：`**咖啡因机制**：...` 或 `**关于午睡**：...`
-  - 关键词2-6个字，概括该条主题
-  - 冒号后用一句话说清楚洞察
-- **每条控制在1-2句话**，不超过50字
-  - 如果需要更多解释，拆成两条
-- **具体数据放在句中**，不要单独列出
-  - ✅ "REM睡眠每减少5%，死亡风险增加13%"
-  - ❌ "REM睡眠很重要。研究显示减少5%会增加13%死亡风险。"
+- **使用数字+顿号格式** (`1、` `2、` `3、`...)
+  - 注意是顿号「、」不是点号「.」
+- **每条是完整段落**，包含：
+  - 观点/结论（第一句）
+  - 逻辑推理/因果解释（后续句子）
+  - 具体例子或数据（如有）
+- **每条 2-4 句话**，50-150 字
+- **观点要有深度**：
+  - ✅ "AI 应用创业者不会相信 AGI。逻辑很简单，如果真信，就不应该做 AI 应用创业。AGI 如果存在，创业就只剩一件事：去做有机会达成 AGI 的模型。"
+  - ❌ "AI 应用创业者不相信 AGI"（太简单，没有逻辑推理）
+- **保持 10-15 条**（不是 8-12 条）
 
 **Key principles:**
-- Start with attention-grabbing hook
-- Highlight 1-2 **most profound** non-consensus insights that:
-  - Challenge how readers think about the domain
-  - Reveal underlying mental models or strategic frameworks
-  - Connect seemingly unrelated ideas to expose patterns
-- Keep list to **8-12 items** (not 15+, quality over quantity)
-- Each point must:
-  - **Start with bold keyword** for scannability
-  - **Be one core idea** - if you need "而且/另外", split into two items
-  - **Include specific data** when available (numbers, names, percentages)
-  - **Pass the non-obvious test** (would informed readers NOT already know this?)
+- 标题要有冲击力，抓住最反直觉的观点
+- 开头简洁，快速进入正题
+- 每条观点要有完整的逻辑链条
+- 观点之间可以有递进或对比关系
+- Include specific data when available (numbers, names, percentages)
+- Pass the non-obvious test (would informed readers NOT already know this?)
 - End with separator line `---`
-- Target: 600-1000 characters for the list portion
 
 ### 5. Generate Long-Form Version
 
@@ -288,44 +299,65 @@ Before delivering, verify you followed the four-stage process:
 
 **格式规范：**
 - **行距**：段落内不留空行，段落之间留一个空行
-- **短文标题**：使用 `# 几个核心观点`
+- **文档标题**：使用 `# MMDD：嘉宾名 X 栏目名：一句话观点` 格式
 - **长文标题**：使用 `# 精华片段`
 
 **结构模板：**
 ```
-[开场介绍 - 编辑者视角，介绍嘉宾背景和成就]
+# MMDD：[嘉宾名] X [栏目名]：[一句话核心观点]
 
-# 几个核心观点
+今天看到 [嘉宾名] 去了 [栏目名] 的播客。
 
-[短文列表内容，行与行之间不留空]
+[嘉宾名] [2-3句话介绍嘉宾背景，用具体数据]。
+
+这期播客总共录了 [时长]，[嘉宾名] 谈到了 [N] 个有趣的观点：
+
+1、[观点]。[逻辑推理]
+
+2、[观点]。[逻辑推理]
+
+...（共 10-15 条）
 
 ---
 
 # 精华片段
 
-[长文内容]
+[长文内容 - Style B 对话式访谈格式]
 
 ---
 
-[结束语 - 引申到编辑者自己和读者]
+[结束语]
 ```
 
-**开场介绍模板（必须包含）：**
+**开场介绍模板（新格式）：**
 ```
-今天看到[嘉宾]去了[播客/节目名称]的播客。花了[时间]听完了这期播客。干货太多了。
+# 0130：Peter Steinberger X The Pragmatic Engineer：一天600次提交，代码比以前更好
 
-[嘉宾]是我[时间]见过的把"[核心主题]"这个问题讲得最透彻的人。[2-3句话介绍嘉宾的核心成就和背景，用具体数据]。[嘉宾的反差点或独特之处]。
+今天看到 Peter Steinberger 去了 The Pragmatic Engineer 的播客。
 
-这期播客的信息密度极高。我把全文精编出来，按主题重新组织，供大家学习。
+Peter Steinberger 创建了 PSPDF kit——一个被超过 10 亿设备使用的 PDF 框架，后来经历严重职业倦怠卖掉股份消失了 3 年。2024 年回归后，他用完全不同的方式创建了 Clawdbot，一周从 100 星涨到 3300 星。
+
+这期播客总共录了将近两小时，Peter 谈到了 11 个有趣的观点：
 ```
 
-**结束语模板（必须包含）：**
+**观点列表示例：**
+```
+1、AI 应用创业者不会相信 AGI。逻辑很简单，如果真信，就不应该做 AI 应用创业。AGI 如果存在，创业就只剩一件事：去做有机会达成 AGI 的模型。
+
+2、创业的产品定位，关键点之一是：要做工作流的上游。上游的产品，不容易被下游的产品吃掉，反过来，发展到一定阶段，上游可以做下游的事。
+
+3、Code Reviews 已死。对 prompts 的兴趣比代码更大，PR 应该叫"Prompt Requests"。因为 prompt 给的信号更高——你是怎么得到这个解决方案的？问了什么？有多少引导？
+```
+
+**结束语模板：**
 ```
 ---
 
-[嘉宾名字]凭[具体贡献]，[产生的影响]。[我个人的行动或感受]。
+[嘉宾名字]凭[具体贡献]，[产生的影响]。
 
-[引用一句有力的话或个人签名]来收个尾。希望大家能像这期播客反复讲的——[核心理念]。[最后一句升华]。
+用他的话收个尾："[引用一句有力的话]"。[最后一句个人感受或升华]。
+
+YouTube 链接：[链接]
 ```
 
 If only one format was requested, still include opening and closing sections.
