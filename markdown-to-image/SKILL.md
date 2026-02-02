@@ -1,101 +1,147 @@
-# Markdown to Image Skill
+---
+name: markdown-to-image
+description: 将 Markdown 内容转换为精美的图片海报。特别适合将播客摘要、文章内容转为社交媒体分享图片。固定 3:4 比例，支持 YouTube 视频封面作为头图。触发词：「转图片」「Markdown 转图片」「生成海报」「生成分享图」「把这个转成图片」。
+---
 
-将 Markdown 内容（特别是 content-digest 输出）转换为精美的小红书风格图片海报。
+# Markdown 转精美图片
 
-## 功能特点
+将 Markdown 内容渲染为精美的分享海报图片，适合微信、小红书、微博等平台。
 
-- **小红书风格**：紫色渐变背景 + 白色卡片 + 圆角设计
-- **自动分页**：内容过长时自动分成多张图片（默认每页 5 个观点）
-- **页码指示**：多页时显示 "1/3" 等页码
-- **智能解析**：自动提取标题、简介、核心观点
-- **本地运行**：使用系统 Chrome 渲染，无需联网
+## 核心特性
 
-## 使用方式
+- **固定 3:4 比例**（1080×1440 像素）
+- **自动分页** - 内容较多时生成多张图片
+- **智能 SVG 头图** - 根据主题关键词自动生成相应风格的手绘线条图
+- **智能标题** - 自动提取嘉宾名和主题，格式为「嘉宾：主题」
+- **白色背景 + 大字体** - 清晰易读，专业排版
+- **自适应布局** - 内容均匀分布，减少留白
+- **宽字间距行间距** - 参考优秀海报排版
 
-### 命令行
+## 快速开始
+
+### 基本用法
 
 ```bash
-python3 ~/.claude/skills/markdown-to-image/scripts/md2img.py "文件路径.md"
+# 转换 Markdown 文件为图片（自动分页）
+python3 scripts/md_to_image.py --file /path/to/content.md
+
+# 指定输出目录
+python3 scripts/md_to_image.py --file /path/to/content.md --output-dir /path/to/output
+
+# 调整每页条目数
+python3 scripts/md_to_image.py --file /path/to/content.md --items-per-page 4
 ```
 
-### 参数
+### 参数说明
 
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
-| `input` | 输入的 Markdown 文件路径 | 必填 |
-| `-o, --output` | 输出目录 | `obsidian/attachments/MMDD-标题/` |
-| `-p, --points-per-page` | 每页显示的观点数量 | 5 |
+| `--file`, `-f` | Markdown 文件路径 | 必填 |
+| `--output-dir`, `-o` | 输出目录 | `attachments/MMDD` |
+| `--width`, `-w` | 图片宽度（像素） | `1080` |
+| `--items-per-page` | 每页显示条目数 | `5` |
 
-### 示例
+### 输出规格
 
-```bash
-# 默认用法 - 自动保存到 attachments 目录
-python3 ~/.claude/skills/markdown-to-image/scripts/md2img.py ~/Documents/obsidian/每日播客/0129-Sebastian-Raschka-LLM技术现状.md
+- **比例**: 固定 3:4（1080×1440 像素）
+- **格式**: PNG
+- **分页**: 自动根据内容生成多张图片
+- **命名**: `page_1.png`, `page_2.png`, ...
+- **保存位置**: 默认 `attachments/MMDD`（MMDD 为当日日期）
 
-# 指定输出目录
-python3 ~/.claude/skills/markdown-to-image/scripts/md2img.py input.md -o ~/Desktop/output/
+## 智能 SVG 头图
 
-# 每页显示 4 个观点
-python3 ~/.claude/skills/markdown-to-image/scripts/md2img.py input.md -p 4
-```
+根据文章主题自动生成不同风格的 SVG 装饰图：
 
-## 输出目录规则
+| 主题关键词 | 生成的 SVG 风格 |
+|-----------|----------------|
+| `AI`、`AGI`、`通用` | 神经网络节点 → 大脑 → 对话泡泡 |
+| `开源`、`open source` | 开源符号 → 代码括号 → 分享图标 |
+| 其他（默认） | 麦克风 → 声波 → 人物对话 |
 
-默认保存到：`/Users/ugreen/Documents/obsidian/attachments/MMDD-标题/`
+SVG 特点：
+- 手绘风格，黑色线条白底
+- 宽幅 16:9 比例
+- 140px 高度，居中显示
+- 底部带主题文字标签
 
-- `MMDD` 从文件名提取（如 `0129-xxx.md` → `0129`）
-- 如果文件名无日期，使用当天日期
-- 生成的图片命名为 `page-1.png`, `page-2.png`, ...
+## 智能标题提取
 
-## 支持的 Markdown 格式
+自动从 Markdown 元信息中提取嘉宾和主题：
 
-脚本会自动解析以下结构：
-
+**输入格式**：
 ```markdown
-# 标题
+# 播客名称
 
-简介段落...
-
-1、核心观点一。观点说明...
-
-2、核心观点二。观点说明...
-
-...
-
----
-
-# 精华片段（会被忽略）
+> **嘉宾**: Sebastian Raschka（LLM研究员）
+> **主题**: 2025年AI技术趋势
 ```
 
-支持的观点格式：
-- `1、观点内容`
-- `1. 观点内容`
-- `1) 观点内容`
-- `1️⃣ 观点内容`
+**输出标题**：`Sebastian Raschka：2025年AI技术趋势`
+
+## Markdown 格式处理
+
+| 格式 | 渲染效果 |
+|------|----------|
+| `# 标题` | 自动提取并组合为「嘉宾：主题」 |
+| `> **嘉宾**: ...` | 提取嘉宾名（移除 `**`） |
+| `> **主题**: ...` | 提取主题内容 |
+| `**加粗**` | 红色加粗文字（移除 `**` 标记） |
+| `1、2、3、` | 红色圆形数字编号 |
+| `"引用内容"` | 蓝色高亮引用 |
+
+## 工作流程
+
+当用户请求将 Markdown 转为图片时：
+
+1. **确定输入内容**
+   - 如果用户指定了文件路径，使用该文件
+   - 如果用户当前打开了 Markdown 文件，默认使用该文件
+
+2. **自动处理**
+   - 提取嘉宾和主题生成标题
+   - 根据主题关键词生成相应 SVG 头图
+   - 提取短版摘要（`📱 短版摘要` 部分）
+   - 移除所有 `**` markdown 标记，转为真正的加粗样式
+   - 根据条目数量自动分页
+
+3. **输出结果**
+   - 返回所有图片路径给用户
+   - 图片保存在 `attachments/MMDD` 目录
+
+## 常见用法
+
+| 用户说 | 操作 |
+|------|------|
+| 「把这个转成图片」| 转换当前打开的 Markdown 文件 |
+| 「生成分享海报」| 同上 |
+| 「这个播客摘要转图片」| 转换播客摘要文件 |
+| 「Markdown 转图片」| 同上 |
 
 ## 依赖
 
-- Python 3.9+
-- playwright (`pip3 install playwright`)
-- markdown (`pip3 install markdown`)
-- Google Chrome（使用系统安装的 Chrome）
+脚本依赖以下 Python 包：
+- `playwright` - 浏览器自动化渲染
+- `markdown` - Markdown 解析
+- `requests` - 网络请求（备用）
 
-## 与 podcast-workflow 集成
-
-在 `podcast-workflow` 中，当 content-digest 处理完成并保存到飞书后，会询问用户是否转为图片。
-
-确认后自动调用此脚本：
-
+首次使用需安装：
 ```bash
-python3 ~/.claude/skills/markdown-to-image/scripts/md2img.py "每日播客/MMDD-xxx.md"
+pip3 install playwright markdown requests
+playwright install chromium
 ```
 
-生成的图片保存到 `attachments/MMDD-xxx/` 目录下，可直接用于小红书发布。
+## 更新日志
 
-## 图片效果
+### v1.1 (2026-02-01)
+- ✅ 智能 SVG 头图：根据主题关键词自动生成相应风格
+- ✅ 智能标题：自动提取「嘉宾：主题」格式
+- ✅ 移除 `**` 标记：元信息和正文中的 markdown 加粗正确转换
+- ✅ SVG 更大更醒目：140px 高度，600px 宽
+- ✅ 优化排版：更大字体、更宽间距、自适应布局
 
-- 尺寸：720px 宽度（小红书最佳）
-- 背景：紫色渐变（#667eea → #764ba2）
-- 卡片：白色圆角卡片，带阴影
-- 观点：每个观点独立卡片，带 emoji 编号
-- 页码：多页时底部显示页码
+### v1.0 (2026-02-01)
+- 初始版本
+- 固定 3:4 比例
+- 自动分页
+- 白色背景设计
