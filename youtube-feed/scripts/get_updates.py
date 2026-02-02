@@ -103,27 +103,39 @@ def parse_feed(xml_content, channel_name, days=2):
     return videos
 
 
-def get_video_views(video_id):
-    """获取视频播放数（通过页面抓取）"""
+def get_video_details(video_id):
+    """获取视频详情：播放数和时长"""
+    result = {'views': None, 'duration': None}
     try:
         url = f"https://www.youtube.com/watch?v={video_id}"
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
         response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             import re
-            # 尝试匹配观看次数
+            # 获取观看次数
             match = re.search(r'"viewCount":"(\d+)"', response.text)
             if match:
                 views = int(match.group(1))
                 if views >= 1000000:
-                    return f"{views/1000000:.1f}M"
+                    result['views'] = f"{views/1000000:.1f}M"
                 elif views >= 1000:
-                    return f"{views/1000:.1f}K"
+                    result['views'] = f"{views/1000:.1f}K"
                 else:
-                    return str(views)
+                    result['views'] = str(views)
+            
+            # 获取视频时长（秒）
+            duration_match = re.search(r'"lengthSeconds":"(\d+)"', response.text)
+            if duration_match:
+                seconds = int(duration_match.group(1))
+                hours = seconds // 3600
+                minutes = (seconds % 3600) // 60
+                if hours > 0:
+                    result['duration'] = f"{hours}h{minutes:02d}m"
+                else:
+                    result['duration'] = f"{minutes}分钟"
     except:
         pass
-    return None
+    return result
 
 
 def generate_summary(description, title, max_chars=400):
@@ -191,13 +203,14 @@ def main():
     for video in all_videos:
         video['summary'] = generate_summary(video['description'], video['title'])
     
-    # 获取播放量（可选）
+    # 获取播放量和时长（可选）
     if args.views:
-        print(f"正在获取播放量...", file=sys.stderr)
+        print(f"正在获取播放量和时长...", file=sys.stderr)
         import time
         for video in all_videos:
-            views = get_video_views(video['video_id'])
-            video['views'] = views if views else '-'
+            details = get_video_details(video['video_id'])
+            video['views'] = details['views'] if details['views'] else '-'
+            video['duration'] = details['duration'] if details['duration'] else '-'
             time.sleep(0.3)
     
     if args.json:
@@ -212,9 +225,10 @@ def main():
         
         for i, video in enumerate(all_videos, 1):
             date_short = video['published'].split(' ')[0][5:]  # MM-DD
-            views_str = f" | 👁 {video.get('views', '-')}" if video.get('views') else ""
+            duration_str = f" | ⏱ {video.get('duration')}" if video.get('duration') else ""
+            views_str = f" | 👁 {video.get('views')}" if video.get('views') else ""
             print(f"### {i}. [{video['title']}]({video['url']})")
-            print(f"**{video['channel']}** | {date_short}{views_str}\n")
+            print(f"**{video['channel']}** | {date_short}{duration_str}{views_str}\n")
             print(f"> {video['summary']}\n")
             print("---\n")
     else:
@@ -228,8 +242,9 @@ def main():
         
         for i, video in enumerate(all_videos, 1):
             date_short = video['published'].split(' ')[0][5:]  # MM-DD
+            duration_str = f" | ⏱ {video.get('duration')}" if video.get('duration') else ""
             views_str = f" | 👁 {video.get('views')}" if video.get('views') else ""
-            print(f"\n{i}. 【{video['channel']}】{date_short}{views_str}")
+            print(f"\n{i}. 【{video['channel']}】{date_short}{duration_str}{views_str}")
             print(f"   📌 {video['title']}")
             print(f"   🔗 {video['url']}")
             print(f"   📝 {video['summary']}")

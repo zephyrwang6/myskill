@@ -136,7 +136,7 @@ python3 /Users/ugreen/.claude/skills/feishu-wiki/scripts/save_to_wiki.py \
 
 **父节点 Token：** `TOSJwKzxTiFdiRk0aducHNBFntg`（每日播客推荐）
 
-### Step 6: 返回结果
+### Step 6: 返回结果并询问图片
 
 处理完成后，向用户展示：
 
@@ -148,7 +148,27 @@ python3 /Users/ugreen/.claude/skills/feishu-wiki/scripts/save_to_wiki.py \
 
 核心观点数：N 条
 精华片段数：N 个
+
+---
+
+是否要将核心观点转为图片海报？（适合小红书/朋友圈分享）
 ```
+
+### Step 7: 转换为图片（可选）
+
+如果用户确认要转为图片，调用 `markdown-to-image` Skill：
+
+1. **提取短文版本**：只保留标题 + 核心观点列表（不含精华片段）
+2. **优化格式**：
+   - 添加 emoji 序号（1️⃣ 2️⃣ 3️⃣）
+   - 精简每条观点到 1-2 句话
+   - 控制总字数在 500 字以内
+3. **使用浏览器 MCP 操作 Madopic**：
+   - 打开 https://madopic.thus.chat
+   - 粘贴优化后的 Markdown
+   - 选择模式（小红书 3:4 或朋友圈长图）
+   - 导出 PNG
+4. **告知用户图片已下载到下载目录**
 
 ## 快速使用示例
 
@@ -194,6 +214,7 @@ python3 /Users/ugreen/.claude/skills/feishu-wiki/scripts/save_to_wiki.py \
 - `youtube-transcript-cn`：字幕提取
 - `content-digest`：内容处理
 - `feishu-wiki`：飞书写入
+- `markdown-to-image`：转换为图片海报（可选）
 
 ## 配置
 
