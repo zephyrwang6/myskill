@@ -14,8 +14,8 @@ import re
 from pathlib import Path
 
 # 飞书应用配置
-APP_ID = "cli_a9f6d47ef9fa5cd5"
-APP_SECRET = "PCpgD0IvTiVDaIaxY7cn9gzJGcxaubDJ"
+APP_ID = ""
+APP_SECRET = ""
 BASE_URL = "https://open.feishu.cn/open-apis"
 
 # 知识库配置
