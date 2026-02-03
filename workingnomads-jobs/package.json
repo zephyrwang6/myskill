@@ -1,0 +1,15 @@
+{
+  "name": "workingnomads-jobs",
+  "version": "1.0.0",
+  "description": "Web scraper for Working Nomads remote jobs",
+  "main": "scripts/scrape-workingnomads.js",
+  "scripts": {
+    "scrape": "node scripts/scrape-workingnomads.js",
+    "scrape:frontend": "node scripts/scrape-workingnomads.js --frontend --limit=30"
+  },
+  "keywords": ["scraper", "jobs", "remote", "workingnomads"],
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
