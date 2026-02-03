@@ -7,6 +7,7 @@ Markdown to Image Converter - Premium Poster Edition
 - 大字体 + 宽字间距 + 宽行间距
 - 支持 AI 生成的头图
 """
+from __future__ import annotations
 
 import argparse
 import asyncio
