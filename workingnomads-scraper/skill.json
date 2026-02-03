@@ -1,0 +1,30 @@
+{
+  "name": "workingnomads-scraper",
+  "description": "从 Working Nomads 抓取前端开发职位，生成 Markdown 格式",
+  "version": "1.0.0",
+  "commands": [
+    {
+      "name": "抓取前端职位",
+      "description": "抓取 Working Nomads 前端/开发相关职位并生成 Markdown 文件",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "description": "职位类别",
+            "default": "Development"
+          },
+          "size": {
+            "type": "number",
+            "description": "抓取数量",
+            "default": 50
+          }
+        }
+      }
+    }
+  ],
+  "examples": [
+    "抓取前端开发职位",
+    "获取 30 个 Design 职位"
+  ]
+}
