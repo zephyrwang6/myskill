@@ -24,7 +24,7 @@ If the user doesn't specify a timeframe, default to 3 days.
 The script outputs a list of updates in the following format:
 - Title
 - Author
-- Summary (300 characters)
+- Summary (~500 words, extracted from feed content)
 - Update Time
 - Link
 

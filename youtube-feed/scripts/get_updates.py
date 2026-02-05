@@ -108,25 +108,86 @@ def get_video_details(video_id):
     result = {'views': None, 'duration': None}
     try:
         url = f"https://www.youtube.com/watch?v={video_id}"
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36', 'Cookie': 'CONSENT=YES+1'}
         response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             import re
-            # 获取观看次数
-            match = re.search(r'"viewCount":"(\d+)"', response.text)
-            if match:
-                views = int(match.group(1))
-                if views >= 1000000:
-                    result['views'] = f"{views/1000000:.1f}M"
-                elif views >= 1000:
-                    result['views'] = f"{views/1000:.1f}K"
-                else:
-                    result['views'] = str(views)
-            
-            # 获取视频时长（秒）
-            duration_match = re.search(r'"lengthSeconds":"(\d+)"', response.text)
-            if duration_match:
-                seconds = int(duration_match.group(1))
+            def extract_details(text):
+                views_value = None
+                duration_seconds = None
+
+                player_match = re.search(r'ytInitialPlayerResponse\s*=\s*(\{.*?\});', text, re.DOTALL)
+                if player_match:
+                    try:
+                        player_data = json.loads(player_match.group(1))
+                        video_details = player_data.get('videoDetails', {})
+                        views_value = video_details.get('viewCount')
+                        duration_seconds = video_details.get('lengthSeconds')
+                    except Exception:
+                        pass
+
+                if views_value is None:
+                    match = re.search(r'"viewCount":"(\d+)"', text)
+                    if match:
+                        views_value = match.group(1)
+
+                if views_value is None:
+                    match = re.search(r'"viewCountText":\{"simpleText":"([^"]+)"\}', text)
+                    if match:
+                        views_value = match.group(1)
+
+                if duration_seconds is None:
+                    duration_match = re.search(r'"lengthSeconds":"(\d+)"', text)
+                    if duration_match:
+                        duration_seconds = duration_match.group(1)
+
+                return views_value, duration_seconds
+
+            views_value, duration_seconds = extract_details(response.text)
+
+            if views_value is None or duration_seconds is None:
+                alt_url = f"https://r.jina.ai/https://www.youtube.com/watch?v={video_id}"
+                alt_response = requests.get(alt_url, headers=headers, timeout=10)
+                if alt_response.status_code == 200:
+                    alt_views, alt_duration = extract_details(alt_response.text)
+                    if views_value is None:
+                        views_value = alt_views
+                    if duration_seconds is None:
+                        duration_seconds = alt_duration
+
+            if views_value is None or duration_seconds is None:
+                key_match = re.search(r'INNERTUBE_API_KEY\":\"([^\"]+)\"', text)
+                context_match = re.search(r'INNERTUBE_CONTEXT\":(\{.*?\})\s*,\s*\"INNERTUBE_CONTEXT_CLIENT_NAME\"', text, re.DOTALL)
+                if key_match and context_match:
+                    try:
+                        key = key_match.group(1)
+                        context = json.loads(context_match.group(1))
+                        payload = {"context": context, "videoId": video_id}
+                        api_url = f"https://www.youtube.com/youtubei/v1/player?key={key}"
+                        api_response = requests.post(api_url, json=payload, headers=headers, timeout=10)
+                        if api_response.status_code == 200:
+                            api_data = api_response.json()
+                            api_details = api_data.get('videoDetails', {})
+                            if views_value is None:
+                                views_value = api_details.get('viewCount')
+                            if duration_seconds is None:
+                                duration_seconds = api_details.get('lengthSeconds')
+                    except Exception:
+                        pass
+
+            if views_value is not None:
+                digits = re.sub(r'[^\d]', '', str(views_value))
+                if digits:
+                    views = int(digits)
+                    if views >= 1000000:
+                        result['views'] = f"{views/1000000:.1f}M"
+                    elif views >= 1000:
+                        result['views'] = f"{views/1000:.1f}K"
+                    else:
+                        result['views'] = str(views)
+
+            if duration_seconds is not None:
+                seconds = int(duration_seconds)
                 hours = seconds // 3600
                 minutes = (seconds % 3600) // 60
                 if hours > 0:
