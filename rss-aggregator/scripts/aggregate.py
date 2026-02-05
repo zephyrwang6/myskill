@@ -9,7 +9,7 @@ import os
 import re
 from html import unescape
 
-def clean_summary(summary):
+def clean_summary(summary, max_chars=1500):
     if not summary:
         return "No summary available."
     # Remove HTML tags
@@ -18,9 +18,9 @@ def clean_summary(summary):
     text = unescape(text)
     # Collapse whitespace
     text = ' '.join(text.split())
-    # Truncate to 300 chars
-    if len(text) > 300:
-        return text[:297] + "..."
+    # Truncate to max_chars
+    if len(text) > max_chars:
+        return text[:max_chars-3] + "..."
     return text
 
 def parse_opml(opml_path):
