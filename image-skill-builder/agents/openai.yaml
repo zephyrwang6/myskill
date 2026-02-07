@@ -1,0 +1,4 @@
+interface:
+  display_name: "批量生图 Skill 创建助手"
+  short_description: "Create custom batch image generation skills via Q&A"
+  default_prompt: "帮我创建一个批量生图的 Skill"

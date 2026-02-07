@@ -1,0 +1,4 @@
+interface:
+  display_name: "文章批量配图"
+  short_description: "Analyze article sections and batch generate AI illustrations"
+  default_prompt: "使用 $article-batch-illustration 为这篇文章批量生成配图"
