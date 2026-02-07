@@ -1,0 +1,124 @@
+
+📺 最近 2 天共有 20 个新播客更新：
+
+======================================================================
+
+1. 【Stanford GSB】02-06
+   📌 AI Consultant: Map Every Task, Then Draft Investment Memos in 30 Minutes
+   🔗 https://www.youtube.com/watch?v=N_Io-6Jty7g
+   📝 Mapping every investor task before AI implementation turned 2-3 week investment memos into 30-minute drafts.⁣ ⁣ The precision comes from understanding actual workflows, not generic processes.⁣ ⁣ Learn more: https://every.to/consulting
+----------------------------------------------------------------------
+
+2. 【Stanford GSB】02-06
+   📌 Sam Altman: AI Will Replace All Knowledge Work Through One Universal Assistant
+   🔗 https://www.youtube.com/watch?v=PMUK3Th80vc
+   📝 Coding models will power all knowledge work, predicts Sam Altman. The future isn't separate tools for different tasks—it's one AI with your memory, company context, and computer access handling everything from scientific breakthroughs to email drafts.
+----------------------------------------------------------------------
+
+3. 【South Park Commons】02-05
+   📌 Claude Opus 4.6 Is Here: Everything You Need to Know
+   🔗 https://www.youtube.com/watch?v=5z4StBj9qck
+   📝 I got early access to Anthropic's newest model, Opus 4.6, and tested it across three real use cases: podcast post-production, game building with Claude Code, and creating a presentation with Cowork. No hype, just honest results. Timestamps: (00:00) What's new with Opus 4.6 (three key changes) (01:30) Quick tips for getting the best results from Opus 4.6 (02:09) Use case 1:
+----------------------------------------------------------------------
+
+4. 【Stanford GSB】02-05
+   📌 OpenAI and Anthropic Just Dropped INSANE New Models. We Tested Both Live.
+   🔗 https://www.youtube.com/watch?v=d8QrEzKhUII
+   📝 OpenAI and Anthropic both released major new models today—GPT-5.3 Codex and Opus 4.6. We've been testing both internally on real production code all week, and our conclusion: The models are converging. In this stream, we go live with head-to-head demos, our custom LFG benchmark results, and Reach Test ratings from the team.
+----------------------------------------------------------------------
+
+5. 【Tiago Forte】02-05
+   📌 Goodfire AI’s Bet: Interpretability as the Next Frontier of Model Design — Myra Deng & Mark Bissell
+   🔗 https://www.youtube.com/watch?v=ck63uv6APBA
+   📝 From Palantir and Two Sigma to building Goodfire into the poster-child for actionable mechanistic interpretability, Mark Bissell (Member of Technical Staff) and Myra Deng (Head of Product) are trying to turn “peeking inside the model” into a repeatable production workflow by shipping APIs, landing real enterprise deployments, and now scaling the bet with a recent $150M Series B funding round at a ...
+----------------------------------------------------------------------
+
+6. 【Anthropic】02-05
+   📌 Introducing Claude Opus 4.6
+   🔗 https://www.youtube.com/watch?v=dPn3GBI8lII
+   📝 Our smartest model got an upgrade. Claude Opus 4.6 plans more carefully, stays on task longer, and works more autonomously, so you can do more with less back-and-forth. Read more: https://anthropic.com/news/claude-opus-4-6
+----------------------------------------------------------------------
+
+7. 【Latent Space】02-05
+   📌 We are in a Race To Understand AI | Eric Ho, Goodfire
+   🔗 https://www.youtube.com/watch?v=7Y3dIOlxvUA
+   📝 Learn more about Goodfire at https://www.goodfire.ai/ Goodfire co-founder and CEO Eric Ho joins Lightspeed partner Nnamdi Iregbulem to unpack why interpretability has become one of the most urgent and underdeveloped problems in AI. As increasingly powerful models are deployed into mission-critical domains, Eric explains why there has never been a wider gap between the scale of adoption and our und...
+----------------------------------------------------------------------
+
+8. 【The MAD Podcast (Matt Turck)】02-05
+   📌 Dylan Patel: NVIDIA's New Moat & Why China is "Semiconductor Pilled”
+   🔗 https://www.youtube.com/watch?v=DqBMzuzxZog
+   📝 Dylan Patel (SemiAnalysis) joins Matt Turck for a deep dive into the AI chip wars — why NVIDIA is shifting from a “one chip can do it all” worldview to a portfolio strategy, how inference is getting specialized, and what that means for CUDA, AMD, and the next wave of specialized silicon startups.
+----------------------------------------------------------------------
+
+9. 【Google for Developers】02-05
+   📌 Current status: 99% caffeine, 1% organization. 🔋
+   🔗 https://www.youtube.com/watch?v=G9pNcIE_SnU
+   📝 Sometimes it's just a problem for future you. 🔮
+----------------------------------------------------------------------
+
+10. 【Lex Fridman】02-05
+   📌 Joe Tsai, Co-Founder and Chairman, Alibaba: Find Your People
+   🔗 https://www.youtube.com/watch?v=dbV1sMfv9TQ
+   📝 In this View From The Top interview, Jeremy Tepper, MBA '26, speakers with Joe Tsai, Co-Founder and Chairman of Alibaba. Joe Tsai joined Alibaba in 1999 as a co-founder alongside Jack Ma and 16 others. In this episode, Tsai shares stories from his more than two-decade journey helping build and lead the company—from early fundraising challenges to how Alibaba has avoided the Innovator’s Dilemma.
+----------------------------------------------------------------------
+
+11. 【Y Combinator】02-04
+   📌 AI Guidance for Physical Work
+   🔗 https://www.youtube.com/watch?v=hSDlgCKBx6w
+   📝 Much of the AI conversation focuses on which desk jobs will get replaced. But for physical work, AI can't yet act in the world. With multimodal models and ubiquitous hardware, there’s an opportunity to give workers live AI coaching that dramatically reduces training time and unlocks skilled labor at scale. Apply to YC Spring 2026 at ycombinator.com/apply.
+----------------------------------------------------------------------
+
+12. 【The MAD Podcast (Matt Turck)】02-04
+   📌 Tiny Reasoning & Recursive Models #ai #podcast
+   🔗 https://www.youtube.com/watch?v=op2JE87VZNs
+   📝 Watch the Full Episode with Sebastian Raschka
+----------------------------------------------------------------------
+
+13. 【Stanford GSB】02-04
+   📌 How We Built 'Claudie,' Our AI Project Manager (Full Walkthrough)
+   🔗 https://www.youtube.com/watch?v=LG943MX-Krg
+   📝 A few weeks ago, Natalia Quintero wouldn’t have called herself technical. But since the beginning of January, she has woken up at 6 a.m. to vibe code with Claude. The AI project manager she built saved her 14 hours a week. Getting there meant scrapping the system three times and starting over.
+----------------------------------------------------------------------
+
+14. 【Lex Fridman】02-04
+   📌 Leadership Labs
+   🔗 https://www.youtube.com/watch?v=DWwE6zR2mu0
+   📝 In fall quarter, first-year MBA students are required to take Leadership Labs, an experiential course where they practice core leadership skills in team settings. In “squads” of six guided by second-year Arbuckle Fellows, students participate in a series of role-plays, case studies, and simulations geared to mimic the stakes and ambiguity of real-life scenarios, allowing them to refine their decis...
+----------------------------------------------------------------------
+
+15. 【South Park Commons】02-04
+   📌 Master OpenClaw in 30 Minutes (5 Real Use Cases + Setup + Memory)
+   🔗 https://www.youtube.com/watch?v=ji_Sd4si7jo
+   📝 Today, I want to show you how to use OpenClaw to manage your calendar, edit your documents, send you personalized briefings, reply via voice, and much more. Ever since I’ve set up OpenClaw, I’ve barely touched Cursor or Claude Code. It’s just so much easier to text my AI employee to do work while I’m on the go. It's honestly incredible how much you can personalize OpenClaw for your needs.
+----------------------------------------------------------------------
+
+16. 【Latent Space】02-04
+   📌 The AI Startup Redefining How Software Engineers Run Production | Spiros Xanthos, Resolve AI
+   🔗 https://www.youtube.com/watch?v=6rZ-ruRKQ4Q
+   📝 Resolve AI Founder and CEO Spiros Xanthos joins Lightspeed partner Sebastian Duesterhoeft to unpack why software development has accelerated dramatically while production has become the new bottleneck. As AI coding tools push more code into the world than ever before, Spiros explains why reliability, incident response, and operational complexity now define the pace of progress, and why running pro...
+----------------------------------------------------------------------
+
+17. 【Anthropic】02-04
+   📌 Can I get a six pack quickly?
+   🔗 https://www.youtube.com/watch?v=kQRu7DdTTVA
+   📝 Ads are coming to AI. But not to Claude. Keep thinking. Read more about why: https://www.anthropic.com/news/claude-is-a-space-to-think
+----------------------------------------------------------------------
+
+18. 【Anthropic】02-04
+   📌 How can I communicate better with my mom?
+   🔗 https://www.youtube.com/watch?v=FBSam25u8O4
+   📝 Ads are coming to AI. But not to Claude. Keep thinking. Read more about why: https://www.anthropic.com/news/claude-is-a-space-to-think
+----------------------------------------------------------------------
+
+19. 【Anthropic】02-04
+   📌 What do you think of my business idea?
+   🔗 https://www.youtube.com/watch?v=De-_wQpKw0s
+   📝 Ads are coming to AI. But not to Claude. Keep thinking. Read more about why: https://www.anthropic.com/news/claude-is-a-space-to-think
+----------------------------------------------------------------------
+
+20. 【Anthropic】02-04
+   📌 Is my essay making a clear argument?
+   🔗 https://www.youtube.com/watch?v=3sVD3aG_azw
+   📝 Ads are coming to AI. But not to Claude. Keep thinking. Read more about why: https://www.anthropic.com/news/claude-is-a-space-to-think
+----------------------------------------------------------------------

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Logo 批量生成器"
+  short_description: "Batch generate logos from description or reference image"
+  default_prompt: "使用 $logo-batch-generator 为我的项目批量生成 Logo"

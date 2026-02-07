@@ -1,0 +1,4 @@
+interface:
+  display_name: "分镜故事板生成器"
+  short_description: "Create storyboard illustrations from story descriptions"
+  default_prompt: "使用 $storyboard-generator 为我的故事创建分镜插图"
