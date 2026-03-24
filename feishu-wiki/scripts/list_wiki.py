@@ -4,13 +4,14 @@
 用法: python list_wiki.py [--json]
 """
 
+import os
 import requests
 import json
 import argparse
 
 # 飞书应用配置
-APP_ID = "cli_a9f6d47ef9fa5cd5"
-APP_SECRET = "REMOVED_FEISHU_SECRET"
+APP_ID = os.environ.get("FEISHU_APP_ID", "cli_a9f6d47ef9fa5cd5")
+APP_SECRET = os.environ.get("FEISHU_APP_SECRET", "")
 BASE_URL = "https://open.feishu.cn/open-apis"
 
 # 知识库根节点

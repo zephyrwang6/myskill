@@ -7,6 +7,7 @@
     python save_to_wiki.py --file /path/to/markdown.md --parent TOKEN
 """
 
+import os
 import requests
 import json
 import argparse
@@ -14,8 +15,8 @@ import re
 from pathlib import Path
 
 # 飞书应用配置
-APP_ID = "cli_a9f6d47ef9fa5cd5"
-APP_SECRET = "REMOVED_FEISHU_SECRET"
+APP_ID = os.environ.get("FEISHU_APP_ID", "cli_a9f6d47ef9fa5cd5")
+APP_SECRET = os.environ.get("FEISHU_APP_SECRET", "")
 BASE_URL = "https://open.feishu.cn/open-apis"
 
 # 知识库配置
