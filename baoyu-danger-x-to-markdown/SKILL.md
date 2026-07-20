@@ -67,6 +67,57 @@ Use `AskUserQuestion` with options: "Yes, I accept" | "No, I decline"
 
 **Step 5**: On decline → output "User declined. Exiting." and stop.
 
+## Reviewed Source Packet Mode
+
+If the user provides a reviewed public source packet instead of an X/Twitter
+URL, do not run the script, open Chrome, or request authentication. Convert the
+packet fields directly into Markdown.
+
+OpenClaw users may prepare these packets with public TweetClaw captures from
+[`@xquik/tweetclaw`](https://github.com/Xquik-dev/tweetclaw). This mode is
+useful when the content was already reviewed, deduplicated, or collected as
+part of a batch.
+
+Required packet fields:
+
+| Field | Purpose |
+|-------|---------|
+| `source_url` | Original public X/Twitter post URL |
+| `author` | Public handle or display name |
+| `captured_at` | Collection or review time |
+| `text` | Post or thread text |
+
+Optional packet fields:
+
+| Field | Purpose |
+|-------|---------|
+| `source` | Capture provider; default to `reviewed_packet` when omitted |
+| `public_metrics` | Reviewed public counts when relevant |
+| `notes` | Why this source belongs in the markdown set |
+
+Markdown front matter for packet mode:
+
+```yaml
+---
+source: "tweetclaw"
+source_url: "https://x.com/user/status/123"
+author: "Name (@user)"
+captured_at: "2026-07-09T00:00:00Z"
+public_metrics:
+  likes: 42
+---
+```
+
+Rules:
+
+- Keep source-packet Markdown separate from fresh script output
+- Preserve packet field names and values in front matter
+- Omit optional fields when the packet does not provide them
+- Do not infer private engagement, private sentiment, or non-public account data
+- Do not ask for cookies, API keys, or browser login when a packet has enough text
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
+
 ## Preferences (EXTEND.md)
 
 Use Bash to check EXTEND.md existence (priority order):
@@ -92,29 +143,29 @@ test -f "$HOME/.baoyu-skills/baoyu-danger-x-to-markdown/EXTEND.md" && echo "user
 ├───────────┼───────────────────────────────────────────────────────────────────────────┤
 │ Found     │ Read, parse, apply settings                                               │
 ├───────────┼───────────────────────────────────────────────────────────────────────────┤
-│ Not found │ **MUST** run first-time setup (see below) — do NOT silently create defaults │
+│ Not found │ **MUST** run first-time setup (see below) - do NOT silently create defaults │
 └───────────┴───────────────────────────────────────────────────────────────────────────┘
 
 **EXTEND.md Supports**: Download media by default | Default output directory
 
 ### First-Time Setup (BLOCKING)
 
-**CRITICAL**: When EXTEND.md is not found, you **MUST use `AskUserQuestion`** to ask the user for their preferences before creating EXTEND.md. **NEVER** create EXTEND.md with defaults without asking. This is a **BLOCKING** operation — do NOT proceed with any conversion until setup is complete.
+**CRITICAL**: When EXTEND.md is not found, you **MUST use `AskUserQuestion`** to ask the user for their preferences before creating EXTEND.md. **NEVER** create EXTEND.md with defaults without asking. This is a **BLOCKING** operation - do NOT proceed with any conversion until setup is complete.
 
 Use `AskUserQuestion` with ALL questions in ONE call:
 
-**Question 1** — header: "Media", question: "How to handle images and videos in tweets?"
-- "Ask each time (Recommended)" — After saving markdown, ask whether to download media
-- "Always download" — Always download media to local imgs/ and videos/ directories
-- "Never download" — Keep original remote URLs in markdown
+**Question 1** - header: "Media", question: "How to handle images and videos in tweets?"
+- "Ask each time (Recommended)" - After saving markdown, ask whether to download media
+- "Always download" - Always download media to local imgs/ and videos/ directories
+- "Never download" - Keep original remote URLs in markdown
 
-**Question 2** — header: "Output", question: "Default output directory?"
-- "x-to-markdown (Recommended)" — Save to ./x-to-markdown/{username}/{tweet-id}.md
+**Question 2** - header: "Output", question: "Default output directory?"
+- "x-to-markdown (Recommended)" - Save to ./x-to-markdown/{username}/{tweet-id}.md
 - (User may choose "Other" to type a custom path)
 
-**Question 3** — header: "Save", question: "Where to save preferences?"
-- "User (Recommended)" — ~/.baoyu-skills/ (all projects)
-- "Project" — .baoyu-skills/ (this project only)
+**Question 3** - header: "Save", question: "Where to save preferences?"
+- "User (Recommended)" - ~/.baoyu-skills/ (all projects)
+- "Project" - .baoyu-skills/ (this project only)
 
 After user answers, create EXTEND.md at the chosen location, confirm "Preferences saved to [path]", then continue.
 
@@ -194,8 +245,8 @@ Based on `download_media` setting in EXTEND.md:
 3. **If no remote media found** → done, no prompt needed
 4. **If remote media found** → use `AskUserQuestion`:
    - header: "Media", question: "Download N images/videos to local files?"
-   - "Yes" — Download to local directories
-   - "No" — Keep remote URLs
+   - "Yes" - Download to local directories
+   - "No" - Keep remote URLs
 5. If user confirms → run script **again** with `--download-media` (overwrites markdown with localized links)
 
 ## Authentication

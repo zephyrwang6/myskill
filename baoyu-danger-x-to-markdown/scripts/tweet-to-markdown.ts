@@ -12,6 +12,15 @@ type TweetToMarkdownOptions = {
   log?: (message: string) => void;
 };
 
+const X_HOSTNAMES = new Set([
+  "mobile.twitter.com",
+  "mobile.x.com",
+  "twitter.com",
+  "www.twitter.com",
+  "www.x.com",
+  "x.com",
+]);
+
 function parseArgs(): { url?: string } {
   const args = process.argv.slice(2);
   let url: string | undefined;
@@ -35,13 +44,14 @@ function normalizeInputUrl(input: string): string {
   }
 }
 
-function parseTweetId(input: string): string | null {
+export function parseTweetId(input: string): string | null {
   const trimmed = input.trim();
   if (!trimmed) return null;
   if (/^\d+$/.test(trimmed)) return trimmed;
 
   try {
     const parsed = new URL(trimmed);
+    if (!X_HOSTNAMES.has(parsed.hostname.toLowerCase())) return null;
     const match = parsed.pathname.match(/\/status(?:es)?\/(\d+)/);
     if (match?.[1]) return match[1];
   } catch {
