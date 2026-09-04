@@ -1,6 +1,6 @@
 ---
 name: logo-batch-generator
-description: 批量生成品牌Logo。支持两种入口：(1)用户描述品牌/用途后批量生成10个Logo变体 (2)用户上传参考图片后分析并生成Logo。提供7种主流风格选择。调用Gemini API生成，保存到Obsidian图片目录。触发词："生成Logo"、"设计Logo"、"做个Logo"、"批量Logo"、"帮我设计一个标志"。
+description: 批量生成品牌Logo。支持两种入口：(1)用户描述品牌/用途后批量生成10个Logo变体 (2)用户上传参考图片后分析并生成Logo。提供7种主流风格选择。调用 Gemini API（或 --provider atlas 走 Atlas Cloud）生成，保存到Obsidian图片目录。触发词："生成Logo"、"设计Logo"、"做个Logo"、"批量Logo"、"帮我设计一个标志"。
 ---
 
 # Logo 批量生成器
@@ -130,6 +130,39 @@ python3 scripts/generate_image.py \
 | Model | `gemini-3-pro-image-preview` |
 | 默认比例 | 1:1（正方形） |
 | 默认分辨率 | 2K |
+
+### 可选：走 Atlas Cloud
+
+Gemini 官方 API 在部分地区不能直连。脚本支持 `--provider atlas`，用
+[Atlas Cloud](https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=myskill)
+的 REST 接口出图，只需要一个 key，工作流的其余部分不变：
+
+```bash
+export ATLASCLOUD_API_KEY=<atlascloud-api-key>
+
+python3 scripts/generate_image.py \
+  --provider atlas \
+  --prompt "提示词" \
+  --output "/Users/ugreen/Documents/obsidian/09image/MMDD-品牌名-logo/01-变体描述.png" \
+  --aspect-ratio "1:1" \
+  --resolution "2K"
+```
+
+| 配置项 | 值 |
+|-------|---|
+| API URL | `https://api.atlascloud.ai/api/v1/model` |
+| API Key | 环境变量 `ATLASCLOUD_API_KEY` |
+| Model | `bytedance/seedream-v4`（默认） |
+
+实测要点：
+
+- **2K 默认值保住了**：`bytedance/seedream-v4` 精确遵守请求尺寸，脚本把
+  `--aspect-ratio` + `--resolution` 换算成 Atlas 要的 `宽*高`（2K + 1:1 → `2048*2048`，
+  实测出图正好 2048×2048）。
+- 该模型返回 **JPEG**，脚本按真实字节修正扩展名并打印一行提示，不会写出名不副实的 `.png`。
+- 换成 `--model google/nano-banana-pro/text-to-image` 时脚本改传 `aspect_ratio`——实测这个
+  模型系列忽略 `size`、只认 `aspect_ratio`，且不支持 2K/4K，会回默认分辨率（脚本会告警）。
+  **做 Logo 建议保持默认的 seedream-v4**，分辨率可控。
 
 ## 7 种可选风格速览
 
